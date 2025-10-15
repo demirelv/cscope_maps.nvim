@@ -31,7 +31,7 @@ M.opts = {
 		window_pos = "bottom",
 	},
 	skip_picker_for_single_result = false,
-	db_build_cmd = { script = "default", args = { "-bqkv" } },
+	db_build_cmd = { script = "default", args = { "-bqkvR" } },
 	statusline_indicator = nil,
 	project_rooter = {
 		enable = false,
@@ -533,6 +533,37 @@ M.user_command = function()
 		nargs = "*",
 		complete = M.cmd_cmp,
 	})
+-- :C user command (0-9, init, add key mapping)
+    vim.api.nvim_create_user_command("C", function(opts)
+    local args = opts.fargs
+    local key = args[1]
+    table.remove(args, 1)
+    local map = {
+        ["0"] = {"find", "s"},
+        ["1"] = {"find", "g"},
+        ["2"] = {"find", "d"},
+        ["3"] = {"find", "c"},
+        ["4"] = {"find", "t"},
+        ["5"] = {"find", "e"},
+        ["6"] = {"find", "f"},
+        ["7"] = {"find", "i"},
+        ["8"] = {"find", "a"},
+        ["9"] = {"db", "build"},
+        ["init"] = {"db", "build"},
+        ["add"] = {"db", "add"},
+    }
+
+    if map[key] then
+        local full_cmd = vim.deepcopy(map[key])
+        vim.list_extend(full_cmd, args)  -- remaining args ekle
+        M.run(full_cmd)
+    else
+        print("undifined command: " .. key)
+    end
+end, {
+    nargs = "*",
+    complete = M.cmd_cmp,
+})
 
 	-- Create the :Cstag user command
 	vim.api.nvim_create_user_command("Cstag", function(opts)

@@ -39,6 +39,18 @@ M.default_keymaps = function(prefix)
 	map({ "n", "v" }, prefix .. "d", "<cmd>CsPrompt d<cr>", { desc = sym_map.d })
 	map({ "n", "v" }, prefix .. "a", "<cmd>CsPrompt a<cr>", { desc = sym_map.a })
 	map({ "n", "v" }, prefix .. "b", "<cmd>Cs db build<cr>", { desc = sym_map.b })
+
+    map({ "n", "v" }, "<leader>0", "<cmd>CsPrompt s<cr><cr>", { desc = sym_map.s })
+	map({ "n", "v" }, "<leader>1", "<cmd>CsPrompt g<cr><cr>", { desc = sym_map.g })
+	map({ "n", "v" }, "<leader>3", "<cmd>CsPrompt c<cr><cr>", { desc = sym_map.c })
+	map({ "n", "v" }, "<leader>4", "<cmd>CsPrompt t<cr><cr>", { desc = sym_map.t })
+	map({ "n", "v" }, "<leader>5", "<cmd>CsPrompt e<cr><cr>", { desc = sym_map.e })
+	map({ "n", "v" }, "<leader>6", "<cmd>CsPrompt f<cr><cr>", { desc = sym_map.f })
+	map({ "n", "v" }, "<leader>7", "<cmd>CsPrompt i<cr><cr>", { desc = sym_map.i })
+	map({ "n", "v" }, "<leader>2", "<cmd>CsPrompt d<cr><cr>", { desc = sym_map.d })
+	map({ "n", "v" }, "<leader>8", "<cmd>CsPrompt a<cr><cr>", { desc = sym_map.a })
+	map({ "n", "v" }, "<leader>9", "<cmd>Cs db build<cr><cr>", { desc = sym_map.b })
+
 end
 
 return M
